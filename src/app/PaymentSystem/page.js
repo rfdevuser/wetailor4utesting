@@ -1,10 +1,12 @@
   "use client"
   import { CREATEORDER } from "@/utils/gql/GQL_MUTATIONS";
   import { useMutation } from "@apollo/client";
+import { useRouter } from "next/navigation";
   import { useState, useEffect } from "react";
   import { useDispatch, useSelector } from "react-redux";
 
   export default function PaymentSystem() {
+    const router = useRouter(); 
     const [amount, setAmount] = useState("1");
     const [email, setEmail] = useState('');
     const userName = useSelector((state) => state.form.formData.name);
@@ -31,8 +33,16 @@
         if (storedAddress) {
             setSelectedAddress(JSON.parse(storedAddress));
         }
-  }, []);
 
+       
+  }, []);
+useEffect(()=>{
+  const token = localStorage.getItem('token');
+  if(!token){
+    router.push('/MobileAuth');
+  }
+  
+},[])
 
     useEffect(() => {
       // Dynamically load the Razorpay script
@@ -118,7 +128,12 @@ var shippingLines = [{methodId: "IN", methodTitle:"Local", total: "60.00"}]
         // Handle error appropriately (e.g., display a message to the user)
     }
     };
+  
+
     const payNow = async () => {
+      if (!selectedAddress || Object.keys(selectedAddress).length === 0) {
+        return alert("Please select an address before proceeding to payment");
+      }
       if (!amount) return alert("Please enter an amount");
 
       try {
@@ -200,7 +215,6 @@ handleonsubmit()
       }
     };
   
-
     return (
       <>
       <div className='mt-4 w-full'>
@@ -215,7 +229,7 @@ handleonsubmit()
       <div className="flex justify-center">
     
     
-          <button className="w-1/2  mt-4 bg-[#064e3b] text-white px-6 py-3 rounded-lg hover:bg-[#111827] transition duration-200 shadow-lg mb-10" type="submit " onClick={payNow}>Pay Now</button>
+          <button className="w-1/2  mt-4 bg-[#064e3b] text-white px-6 py-3 rounded-lg hover:bg-[#111827] transition duration-200 shadow-lg mb-10" type="submit " onClick={payNow}   >Pay Now</button>
       {/* <button onClick={handleonsubmit}>checkout</button> */}
       </div>
       </>

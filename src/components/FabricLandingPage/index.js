@@ -6,7 +6,7 @@ import React from 'react';
 
 const FabricLandingPage = () => {
     const Shimmer = () => (
-        <div className="flex flex-cols  gap-4 p-4">
+        <div className="flex flex-cols  gap-4 p-4 mt-6">
           {[...Array(3)].map((_, index) => (
             <div
               key={index}

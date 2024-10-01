@@ -110,7 +110,7 @@ export default function Login() {
 <>
 
     <div className='h-screen flex items-center justify-center ' style={{ 
-      backgroundImage: "url('/Backgrounds/loginbackground7.jpg')", 
+      backgroundImage: "url('/Backgrounds/des2.jpg')", 
       backgroundSize: 'cover', 
       backgroundRepeat: 'no-repeat', 
       backgroundPosition: 'center' 

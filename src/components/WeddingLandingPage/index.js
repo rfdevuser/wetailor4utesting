@@ -78,7 +78,7 @@ const WeddingLandingPage = () => {
   const products = data?.products?.edges.slice(0, 6) || [];
   return (
     <>
-      <div className='text-2xl text-center mb-8'>The Dress of Your Dreams for the Day of Your Dreams.</div>
+      <div className='text-md lg:text-2xl mt-6 text-center mb-8 '>The Dress of Your Dreams for the Day of Your Dreams.</div>
       <div className='flex flex-col lg:flex-row'>
         <div className='w-full lg:w-2/4 flex justify-center p-3'>
           <Image

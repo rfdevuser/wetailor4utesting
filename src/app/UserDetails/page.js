@@ -43,8 +43,8 @@ const Form = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         isFormSubmitted.current = true; // Mark the form as submitted
-        const emailToSave = formData.email || email;
-        localStorage.setItem('email', emailToSave || '');
+        const emailToSave = formData.email || ''; // Save email only if provided
+        localStorage.setItem('email', emailToSave);
         router.push('/'); // Redirect after submission
     };
 
@@ -89,18 +89,20 @@ const Form = () => {
     }, [router]);
 
     return (
-        <section className="bg-white flex flex-col items-center justify-center h-screen text-white-800"style={{ 
-            backgroundImage: "url('/Backgrounds/loginbackground.jpg')", 
-            backgroundSize: 'cover', 
-            backgroundRepeat: 'no-repeat', 
-            backgroundPosition: 'center' 
-          }} >
+        <section className="bg-white flex flex-col items-center justify-center h-screen text-white-800"
+            style={{ 
+                backgroundImage: "url('/Backgrounds/des2.jpg')", 
+                backgroundSize: 'cover', 
+                backgroundRepeat: 'no-repeat', 
+                backgroundPosition: 'center' 
+            }}>
             <div className="text-center mb-6">
-        <h1 className="text-white text-3xl font-bold">Open the gateway to your tailored world</h1>
-      </div>
-            <div className="w-100 flex flex-col items-center gap-6 rounded-lg p-12 border-black shadow-xl bg-opacity-75 backdrop-filter backdrop-blur-md mt-6 mb-6" style={{ maxWidth: '400px', margin: 'auto', padding: '20px', border: '1px solid #ccc', borderRadius: '8px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+                <h1 className="text-white text-3xl font-bold">Open the gateway to your tailored world</h1>
+            </div>
+            <div className="w-full flex flex-col items-center gap-6 rounded-lg p-12 border-black shadow-xl bg-opacity-75 backdrop-filter backdrop-blur-md mt-6 mb-6"
+                style={{ maxWidth: '400px', margin: 'auto', padding: '20px', border: '1px solid #ccc', borderRadius: '8px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
                 <h1 className="text-center leading-normal text-black font-medium text-xl mb-6 bg-white p-2 rounded-md">
-                   Tell us your name 
+                    Tell us your name 
                 </h1>
                 <form onSubmit={handleSubmit} style={{ width: '100%' }}>
                     <label className="block mb-2 text-white mt-6">
@@ -112,7 +114,7 @@ const Form = () => {
                             onChange={handleChange}
                             required
                             placeholder='Enter your name'
-                            className="ml-2 py-2 px-3 rounded border-double border-4 border-white w-full mt-4 text-white"
+                            className="ml-2 py-2 px-3 rounded border-double border-4 border-white w-full mt-4 text-black"
                         />
                     </label>
 
@@ -124,7 +126,7 @@ const Form = () => {
                             placeholder='Optional'
                             value={formData.email}
                             onChange={handleChange}
-                            className="ml-2 py-2 px-3 rounded border border-gray-300 w-full text-white mt-4"
+                            className="ml-2 py-2 px-3 rounded border border-gray-300 w-full text-black mt-4"
                         />
                     </label>
 

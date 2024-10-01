@@ -194,7 +194,7 @@ const totalDiscount = totalRegularPrice - totalDiscountedPrice + 60;
                             contact_no: ''
                         });
                     }}
-                    className="mt-6  p-3 text-[#0f172a] rounded-md hover:bg-[#09090b]"
+                    className="mt-6  p-3 text-[#0f172a] rounded-md hover:bg-[#09090b] hover:text-white"
                 >
               <b>   <u>+ Add new address</u></b> 
                 </button>

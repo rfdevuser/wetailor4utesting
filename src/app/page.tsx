@@ -21,9 +21,9 @@ export default function Home() {
     <B2BNav/>
 
  <Hero />
- <CelebrationLandingPage/>
+ 
  <WeddingLandingPage/>
-
+ <CelebrationLandingPage/>
  <FabricLandingPage/>
 
  <FestivalLandingPage/>

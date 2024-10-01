@@ -36,8 +36,8 @@ const CelebrationLandingPage = () => {
   
   return (
     <>
-    <div className='bg-gray-50 '>
-      <div className='text-2xl text-center mb-2 mt-4 p-2'>Making Every Celebration a Little Extra Special!</div>
+    <div className='bg-gray-50 mt-6 '>
+      <div className='text-md lg:text-2xl text-center mb-2 mt-4 p-2'>Making Every Celebration a Little Extra Special!</div>
       <div className='flex flex-col lg:flex-row'>
        
         <div className='w-full lg:w-2/4 flex items-center justify-center'>
