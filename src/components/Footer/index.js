@@ -9,8 +9,8 @@ const Footer = () => {
 };
   return (
     <>
-    <div className="w-screen flex justify-center bg-[#748b97] p-4 text-white cursor-pointer" onClick={scrollToTop}><b>Back to Top</b></div>
-    <footer className="bg-[#d1d5db] dark:bg-gray-700 text-black py-8 "  >
+    <div className="w-screen flex justify-center bg-[#030712] p-4 text-white cursor-pointer" onClick={scrollToTop}><b>Back to Top</b></div>
+    <footer className="bg-[#f4f4f5] dark:bg-gray-700 text-black py-8 "  >
     
       <div className="max-w-screen-xl mx-auto px-4">
     
