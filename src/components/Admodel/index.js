@@ -35,7 +35,7 @@ const AdModal = () => {
         </button>
         <div className="absolute bottom-0 right-0 items-center  mx-8">
           <h2 className="text-lg font-semibold text-white bg-black flex justify-center mx-8 text-center p-4">Customise Your Garment — From Single to Bulk, We Design It All!</h2>
-          <Link href='/chatLanguageSelectionPage'> <button className="  mt-2 w-full bg-[#334155] text-white py-2 rounded hover:bg-[#020617]">
+          <Link href='/chatLanguageSelectionPage'> <button onClick={closeModal} className="  mt-2 w-full bg-[#334155] text-white py-2 rounded hover:bg-[#020617]">
            Chat with us
           </button>
           </Link>

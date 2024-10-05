@@ -224,9 +224,9 @@ const ChatLanguageSelectionPage: React.FC = () => {
 
 </div>
     {/* Accordian */}
-   <div className='mb-3 flex justify-center text-2xl'><b><u>FAQs</u></b></div>
+   <div className='mb-3 flex justify-center text-2xl bg-white text-black'><b><u>FAQs</u></b></div>
     <div id="accordionExample">
-        <div className="rounded-t-lg border border-neutral-200 bg-white dark:border-neutral-600 dark:bg-neutral-800">
+        <div className="rounded-t-lg border border-neutral-200 bg-white text-black">
           <h2 className="mb-0" id="headingOne">
             <button
               className={`${
@@ -267,7 +267,7 @@ const ChatLanguageSelectionPage: React.FC = () => {
             show={activeElement === "element1"}
             className="!mt-0 !rounded-b-none !shadow-none"
           >
-            <div className="px-5 py-4">
+            <div className="px-5 py-4 bg-white text-black">
             At B Spoke Brand, we specialize in creating made-to-measure garments tailored to meet the unique needs of each individual. Our commitment to quality craftsmanship ensures that every piece we produce reflects our dedication to both style and comfort.
 <br/>
 In addition to our bespoke offerings, we also provide wholesale and B2B garment solutions. Whether you are a retailer looking to enhance your collection or a business seeking high-quality apparel for your team, we offer a range of options to suit your needs.
@@ -319,7 +319,7 @@ With a focus on customer satisfaction and a passion for fashion, B Spoke Brand i
           show={activeElement === "element2"}
           className="!mt-0 !rounded-b-none !shadow-none"
         >
-          <div className="px-5 py-4">
+          <div className="px-5 py-4 bg-white text-black">
           At B Spoke Brand, we take pride in offering personalized consultations with our expert designers. Our team is dedicated to understanding your unique requirements and bringing your vision to life.
 <br/>
 During your consultation, you can share your specific needs, and our designers will craft a tailored solution just for you. We will guide you through various fabric types, color combinations, and stylish options to ensure that the final product perfectly aligns with your preferences.
@@ -370,7 +370,7 @@ Let us collaborate to create garments that truly reflect your style!
           show={activeElement === "element3"}
           className="!mt-0 !shadow-none"
         >
-          <div className="px-5 py-4">
+          <div className="px-5 py-4 bg-white text-black">
           You will be talking with our top fashion designers, who are highly qualified and excel in their field. They are well-versed in the latest fashion trends and are dedicated to understanding your unique needs and body type.
 <br/>
 Our designers will provide personalized recommendations to help you find the best outfit that enhances your style and fits you perfectly. Your vision is our priority, and we are here to ensure you look and feel your best.
@@ -420,7 +420,7 @@ Our designers will provide personalized recommendations to help you find the bes
           show={activeElement === "element4"}
           className="!mt-0 !shadow-none"
         >
-          <div className="px-5 py-4">
+          <div className="px-5 py-4 bg-white text-black" >
           With over a decade of experience in the industry, B Spoke Brand is well-equipped to guide your B2B business. Since our establishment in 2009, we have developed a deep understanding of the market, allowing us to identify the best quality fabrics at competitive prices that suit your specific needs.
 <br/>
 Our team includes top-notch designers who will work closely with you to create exceptional garments that reflect your brands vision. Additionally, our skilled production team ensures that your clothing is stitched to perfection and delivered on time, without compromising on quality.
