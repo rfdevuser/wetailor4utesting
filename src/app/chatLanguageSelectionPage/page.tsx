@@ -70,7 +70,7 @@ const ChatLanguageSelectionPage: React.FC = () => {
       });
 
       if (data?.wetailor4uAddChatInfo?.responseMessage) {
-        window.open(`http://localhost:3001/Chat/${userId}`, '_blank');
+        window.open(`https://chat-module-psi.vercel.app/Chat/${userId}`, '_blank');
       }
     } catch (error) {
       console.error('Mutation error:', error);
@@ -238,7 +238,7 @@ const ChatLanguageSelectionPage: React.FC = () => {
               aria-expanded="true"
               aria-controls="collapseOne"
             >
-         <strong>Who are we?</strong>    
+         <strong className='bg-white text-black'>Who are we?</strong>    
               <span
                 className={`${
                   activeElement === "element1"
@@ -290,7 +290,7 @@ With a focus on customer satisfaction and a passion for fashion, B Spoke Brand i
             aria-expanded="true"
             aria-controls="collapseOne"
           >
-        <strong>How is this chat feature helpful to me?</strong>   
+        <strong className='bg-white text-black'>How is this chat feature helpful to me?</strong>   
             <span
               className={`${
                 activeElement === "element2"
@@ -341,7 +341,7 @@ Let us collaborate to create garments that truly reflect your style!
             aria-expanded="true"
             aria-controls="collapseOne"
           >
-          <strong>With whom will I be talking?</strong>  
+          <strong className='bg-white text-black'>With whom will I be talking?</strong>  
             <span
               className={`${
                 activeElement === "element3"
@@ -391,7 +391,7 @@ Our designers will provide personalized recommendations to help you find the bes
             aria-expanded="true"
             aria-controls="collapseOne"
           >
-          <strong>How will B2B benefit from this chat?</strong>  
+          <strong className='bg-white text-black'>How will B2B benefit from this chat?</strong>  
             <span
               className={`${
                 activeElement === "element4"
