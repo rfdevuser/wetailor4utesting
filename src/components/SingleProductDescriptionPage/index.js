@@ -465,7 +465,7 @@ const SingleProductDescriptionPage = ({ products }) => {
       <button className='border-2 border-black  bg-[#4a044e] text-white  p-2  rounded-md hover:bg-[#a21caf]' onClick={() => handleToRemoveExtra(selectedBlouseExtraItem)}>Click To Remove Extra</button>
           </div>
 
-      <div className='text-2xl md:text-4xl flex justify-center mt-20'>Elevate your designs with our premium fabrics.</div>
+      <div className='text-2xl md:text-4xl mx-2 mt-20'>Elevate your designs with our premium fabrics.</div>
 
   
       <div className='text-xl md:text-2xl flex justify-center mt-20'><strong>Choose the Main Fabric</strong></div>
@@ -501,8 +501,8 @@ const SingleProductDescriptionPage = ({ products }) => {
 
 
 <div className=''>  {localSelectedFabric && (
-        <div className='mt-10 text-center'>
-          <h2 className='text-2xl md:text-4xl'>Selected Main Fabric:</h2>
+        <div className='mt-10 text-center  bg-gray-50'>
+          <h2 className='text-2xl md:text-4xl text-blue-800 '>Selected Main Fabric:</h2>
           <Image src={localSelectedFabric.image} alt={localSelectedFabric.name} height={100} width={100} className='mt-4 mx-auto' />
           <p className='text-xl'>{localSelectedFabric.name}</p>
           <p className='text-lg text-[#4c0519]'><b>Price:  {localSelectedFabric.price} per meter</b></p>
@@ -545,8 +545,8 @@ const SingleProductDescriptionPage = ({ products }) => {
 
 
 <div className=''>  {localSelectedLinigFabric && (
-        <div className='mt-10 text-center'>
-          <h2 className='text-2xl md:text-4xl'>Selected Lining Fabric:</h2>
+        <div className='mt-10 text-center bg-gray-50'>
+          <h2 className='text-2xl md:text-4xl text-blue-800'>Selected Lining Fabric:</h2>
           <Image src={localSelectedLinigFabric.image} alt={localSelectedLinigFabric.name} height={100} width={100} className='mt-4 mx-auto' />
           <p className='text-xl'>{localSelectedLinigFabric.name}</p>
           <p className='text-lg text-[#4c0519]'><b>Price:  {localSelectedLinigFabric.price} per meter</b></p>

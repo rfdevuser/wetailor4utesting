@@ -121,3 +121,26 @@ mutation mymutation($input: CustomerAddressInput!,
     }
    
   }`
+
+
+  export const ADD_USER_INFO = gql`
+  mutation AddUserInfo(
+    $userID: String!,
+    $name: String!,
+    $email: String!,
+    $contact: String!
+  ) {
+    wetailor4uAddUserInfo(
+      input: {
+        wetailor4u_userID: $userID,
+        wetailor4u_name: $name,
+        wetailor4u_email: $email,
+        wetailor4u_contact: $contact,
+        clientMutationId: "test1"
+      }
+    ) {
+      clientMutationId
+      wetailor4u_responseMessage
+    }
+  }
+`;

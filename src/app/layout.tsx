@@ -12,6 +12,7 @@ import store from '@/redux/store'
 import HelpWidget from '@/components/HelpWidget'
 import AuthChecker from '@/components/AuthExpiryChecker/AuthChecker'
 import ChatLandingPage from '@/components/ChatLandingPage'
+import Admodel from '@/components/Admodel'
 const inter = Inter({ subsets: ["latin"] });
 const navigationData = [
   { name: "Home", link: "/" },
@@ -46,7 +47,7 @@ export default function RootLayout({
       <AuthChecker>
       
           <Header />
-          
+          <Admodel/>
         <Sidebar navigationData={navigationData}  />
        
           {children}

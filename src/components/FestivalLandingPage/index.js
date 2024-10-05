@@ -59,7 +59,7 @@ const FestivalLandingPage = () => {
 
   return (
     <> 
-    <div className=' relative z-10 mt-6 p-4'>
+    <div className=' relative mt-6 p-4 bg-[#f1f5f9]'>
     <Image 
     src='/Backgrounds/Festival/Festivalposter.jpg'
     alt='Landing Page Poster'

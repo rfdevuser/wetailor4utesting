@@ -21,6 +21,7 @@ const Shimmer = () => {
 };
 
 import PaymentSystem from '../PaymentSystem/page';
+import { userAgent } from 'next/server';
 const Page = () => {
     const cartItems = useSelector((state: any) => state.cart.items);
     const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const Page = () => {
     const [userId, setUserId] = useState<string | null>(null);
     const [showMore, setShowMore] = useState(false);
     const [selectedAddress, setSelectedAddress] = useState<any | null>(null);
-    
+    const [count, setCount] = useState(0);
     const [formData, setFormData] = useState({
         address_title: '',
         other_title: '',
@@ -60,7 +61,8 @@ const Page = () => {
         if (storedAddress) {
             setSelectedAddress(JSON.parse(storedAddress));
         }
-    }, []);
+    },[]);
+    
     const { loading: queryLoading, error: queryError, data , refetch } = useQuery(GET_CUSTOMER_ADDRESSES_BY_USER_ID, {
         variables: { userId },
         skip: !userId,
@@ -73,6 +75,7 @@ const Page = () => {
         setFormData(address); // Populate form with selected address data
           // Save the selected address to local storage
           localStorage.setItem('selectedAddress', JSON.stringify(address));
+          window.location.reload();
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -110,6 +113,7 @@ const Page = () => {
                 contact_no: ''
             });
             refetch();
+            setCount(count + 1);
         } catch (err) {
             setError('Failed to update address.');
         } finally {
@@ -124,7 +128,7 @@ const Page = () => {
  
     if (queryError) return <p>Error fetching addresses</p>;
 
-console.log(cartItems)
+
     const totalRegularPrice = cartItems.reduce((acc: number, item: any) => acc + Number(item.RegPrice), 0);
 const totalDiscountedPrice = cartItems.reduce((acc: number, item: any) => acc + Number(item.price), 0);
 const totalDiscount = totalRegularPrice - totalDiscountedPrice + 60;
@@ -456,7 +460,7 @@ const totalDiscount = totalRegularPrice - totalDiscountedPrice + 60;
             </div>
 
             {selectedAddress && (
-                <div className="  p-4 bg-[#fafafa] shadow-md mt-4">
+                <div className="  p-4 bg-[#fafafa] shadow-md  rounded-md">
                     <h4 className="text-lg font-semibold">Your product will be delivered to :</h4>
                     <p>{selectedAddress.firstname} {selectedAddress.lastname}</p>
                     <p>{selectedAddress.postal_address1}, {selectedAddress.postal_address2}</p>
@@ -466,9 +470,10 @@ const totalDiscount = totalRegularPrice - totalDiscountedPrice + 60;
             )}
             
         </div>
-
+   
             <div className='w-full lg:w-1/4'>
-            <div className="flex flex-col p-6 border-b bg-[#ecfdf5] shadow-sm rounded-lg rounded-md">
+            <h2 className="text-xl font-bold mb-4 mt-3 text-[#1e293b] mx-4">2.Payment </h2>
+            <div className="flex flex-col p-6 border-b bg-[#ecfdf5] shadow-sm rounded-lg rounded-md mt-4">
   {cartItems.length > 0 && (
     <>
 
@@ -483,7 +488,7 @@ const totalDiscount = totalRegularPrice - totalDiscountedPrice + 60;
     </>
   )}
 </div>
-            
+<PaymentSystem/>
             </div>
     
           </div>
@@ -493,8 +498,8 @@ const totalDiscount = totalRegularPrice - totalDiscountedPrice + 60;
 
     {/* <PaymentSystem/> */}
     
-      <h2 className="text-xl font-bold mb-4 mt-3 text-[#1e293b] mx-4">2.Payment </h2>
-    <PaymentSystem/>
+    
+    
         </>
     );
 };

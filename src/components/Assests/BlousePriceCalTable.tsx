@@ -1,7 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '@/redux/actions/cartActions'; // Adjust path as necessary
-
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 interface BlousePriceCalTableProps {
   productName: string;
   productPrice: string;
@@ -73,7 +74,9 @@ const BlousePriceCalTable: React.FC<BlousePriceCalTableProps> = ({
   const finalregularPrice = (
     formatPrice(RegularPrice || '0')+ formatPrice(regulartotalPrice)
   ).toFixed(2);
-  console.log(slug,"hi")
+  const showMessage = () => {
+    toast.info('Hello, world!');
+  };
   const handleAddToCart = () => {
     const concatenatedNames = [
       productName,
@@ -92,6 +95,7 @@ const BlousePriceCalTable: React.FC<BlousePriceCalTableProps> = ({
       slug: slug || '',
       pid: pid || ''
     }));
+ 
   };
 
 
@@ -149,12 +153,40 @@ const BlousePriceCalTable: React.FC<BlousePriceCalTableProps> = ({
           )}
         </tbody>
       </table>
-      <button
-        onClick={handleAddToCart}
-        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-200"
-      >
-        Add to Cart
-      </button>
+      <div className='flex justify-center'>
+  <button
+  
+    onClick={(e) => {
+      if (!productPrice) {
+        alert("Please select a size.");
+        return; // Prevent further action
+      }
+      
+      const button = e.currentTarget;
+
+      // Add a class to trigger the animation
+      button.classList.add('clicked');
+      handleAddToCart();
+
+      // Remove the class after the animation duration
+      setTimeout(() => {
+        button.classList.remove('clicked');
+      }, 300); // Match this duration to your CSS animation duration
+    }}
+    className={`mt-4 px-4 py-2 rounded transition duration-200 flex justify-center ${productPrice ? 'bg-green-500 text-white hover:bg-blue-600' : 'bg-gray-400 text-gray-200 cursor-not-allowed'}`}
+    disabled={!productPrice} // Disable button if productPrice is not available
+  >
+    Add to Cart
+  </button>
+</div>
+
+<style jsx>{`
+  button.clicked {
+    transform: scale(0.95);
+    transition: transform 0.2s ease;
+  }
+`}</style>
+
     </div>
   );
 };

@@ -25,8 +25,24 @@ const NavBar: React.FC = () => {
 
 
   // Handle mouse enter and leave for dropdown
-  const handleMouseEnter = () => setShowDropdown(true);
-  const handleMouseLeave = () => setShowDropdown(false);
+
+  
+  // Timers to manage delay
+  let enterTimer:any, leaveTimer:any;
+
+  const handleMouseEnter = () => {
+    clearTimeout(leaveTimer); // Clear the leave timer
+    enterTimer = setTimeout(() => {
+      setShowDropdown(true);
+    }, 200); // Delay before showing the dropdown
+  };
+
+  const handleMouseLeave = () => {
+    clearTimeout(enterTimer); // Clear the enter timer
+    leaveTimer = setTimeout(() => {
+      setShowDropdown(false);
+    }, 200); // Delay before hiding the dropdown
+  };
 
   // Close mobile menu when a nav link is clicked
   const handleNavLinkClick = () => setNavbarOpen(false);
@@ -63,6 +79,7 @@ const NavBar: React.FC = () => {
     }
   }, [userName]);
 
+  
   // Calculate the number of items in the cart
  
   const cartItems = useSelector((state: any) => state.cart.items); // Adjust this based on your state structure
@@ -77,18 +94,20 @@ const NavBar: React.FC = () => {
         <div className='bg-[#f1f5f9]'>
           <div className="flex justify-between items-center py-2">
             <div className="text-white text-xl font-bold flex items-center mx-auto justify-center">
+              <Link href='/'>
               <Image
                 src='/images/logo/logo-4u.png'
                 alt='wetailor4u_logo'
                 width={80}
                 height={60}
               />
+              </Link>
             </div>
             <div className="flex items-center space-x-4">
               {userName ? (
                 // If userName is available (user is logged in), show welcome message
                 <span
-                  className="text-black text-sm mr-2"
+                  className="text-black hover:text-blue-800 text-sm mr-2 cursor-pointer"
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >

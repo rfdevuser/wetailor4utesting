@@ -229,7 +229,7 @@ handleonsubmit()
       <div className="flex justify-center">
     
     
-          <button className="w-1/2  mt-4 bg-[#064e3b] text-white px-6 py-3 rounded-lg hover:bg-[#111827] transition duration-200 shadow-lg mb-10" type="submit " onClick={payNow}   >Pay Now</button>
+          <button className="w-1/2  mt-4 bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-800 transition duration-200 shadow-lg mb-10" type="submit " onClick={payNow}   >Pay Now</button>
       {/* <button onClick={handleonsubmit}>checkout</button> */}
       </div>
       </>

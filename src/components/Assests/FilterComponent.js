@@ -42,7 +42,7 @@ const FilterComponent = ({setFilterValue , onClose}) => {
     {/* Your main content here */}
   </div>
 
-  <div className='fixed bottom-0 left-0 right-0 bg-gradient-to-br from-[#FACBEA] to-[#FFE4D6] shadow-xl border-t-2 border-black text-bold p-4' style={{ maxHeight: '500px', overflowY: 'auto' }}>
+  <div className='fixed bottom-0 left-0 right-0 bg-gradient-to-br from-[#ffffff] to-[#d4dfed] shadow-xl border-t-2 border-black text-bold p-4' style={{ maxHeight: '500px', overflowY: 'auto' }}>
     <div className='flex flex-wrap justify-around gap-2'>
       <div key="noFilter" className='bg-red-500 p-2 rounded mx-8'>
         <input type="radio" id={`noFilter`} name="fabricType" value={null} onChange={() => handleFilterChange(null)} />
@@ -50,11 +50,22 @@ const FilterComponent = ({setFilterValue , onClose}) => {
       </div>
 
       {[...uniqueFirstWords].map((word, index) => (
-        <div key={index} className='flex items-center bg-white p-2 rounded mx-8 cursor-pointer'>
-          <input type="radio" id={`fabricType${index}`} name="fabricType" value={word} checked={selectedOption === word} onChange={() => handleFilterChange(word)} />
-          <label htmlFor={`fabricType${index}`}><strong>{word}</strong></label> {/* Each unique first word */}
-        </div>
-      ))}
+  <div key={index} className='flex flex-col bg-white p-2 rounded mx-4 cursor-pointer'>
+    <div className='flex items-center mx-auto justify-center'>
+      <input 
+        type="radio" 
+        id={`fabricType${index}`} 
+        name="fabricType" 
+        value={word} 
+        checked={selectedOption === word} 
+        onChange={() => handleFilterChange(word)} 
+        className="mr-2 " // Space between radio and label
+      />
+      <label htmlFor={`fabricType${index}`} className="text-sm"><strong>{word}</strong></label> {/* Each unique first word */}
+    </div>
+  </div>
+))}
+
     </div>
   </div>
 </div>

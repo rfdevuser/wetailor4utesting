@@ -52,7 +52,7 @@ const handleClick = () => {
                 <li key={index} className="flex flex-col sm:flex-row items-center justify-between p-4 border-b">
                   <div className="flex items-center mb-4 sm:mb-0">
                   <Link href={`/SingleBlouseDescriptionPage?id=${LastCodeOfName(item.slug)}`} as={`/SingleBlouseDescriptionPage/${LastCodeOfName(item.slug)}`}>
-                    <img src={item.image} alt={item.name} className="w-20 h-20 object-contain mr-4" /> </Link>
+                    <img src={item.image} alt={item.name} className="w-20 h-20 object-contain mr-4 p-2" /> </Link>
                     <div className="flex flex-col">
                     <Link href={`/SingleBlouseDescriptionPage?id=${LastCodeOfName(item.slug)}`} as={`/SingleBlouseDescriptionPage/${LastCodeOfName(item.slug)}`}>
                       <h3 className="text-lg font-semibold text-gray-800">{item.name}</h3>
@@ -92,7 +92,7 @@ const handleClick = () => {
       <p className="  text-gray-800">Delivery: <span className="text-[#65a30d]">₹60</span></p>
       <p className=" text-gray-800">Total Amount: <span className="text-[#030712]">₹{totalDiscountedPrice.toFixed(2) }</span></p>
 
-      <button className="mt-4 bg-[#6b7280] text-white px-6 py-3 rounded-lg hover:bg-[#111827] transition duration-200 shadow-lg"   onClick={handleClick}>
+      <button className="mt-4 bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-800 transition duration-200 shadow-lg"   onClick={handleClick}>
         Proceed to Checkout
       </button>
 

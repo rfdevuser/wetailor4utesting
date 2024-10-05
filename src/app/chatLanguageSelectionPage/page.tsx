@@ -8,7 +8,7 @@ import { TECollapse } from "tw-elements-react";
 
 const ChatLanguageSelectionPage: React.FC = () => {
   const [updateChatInfo, { loading }] = useMutation(UPDATE_CHAT_INFO);
-  const [bookChatSlot] = useMutation(BOOK_CHAT_SLOT);
+  const [bookChatSlot ,{loading:slotloading}] = useMutation(BOOK_CHAT_SLOT);
   const router = useRouter();
  const [activeElement, setActiveElement] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState<string>('');
@@ -46,6 +46,10 @@ const ChatLanguageSelectionPage: React.FC = () => {
     
     generateTimeSlots();
     generateAvailableDates();
+    const savedPhoneNumber = localStorage.getItem('phoneNumber');
+    if (savedPhoneNumber) {
+      setContactInfo(savedPhoneNumber);
+    }
   }, []);
   
   const handleLanguageSelect = async (language: string) => {
@@ -75,9 +79,11 @@ const ChatLanguageSelectionPage: React.FC = () => {
   };
 
   const handleSlotSelect = async () => {
-    if (!selectedSlot || !selectedDate) return;
+    if (!selectedSlot || !selectedDate) {
+      alert('Please Select Date and Time');
+      return;
 
-    const userId = localStorage.getItem('userId') || '';
+        }    const userId = localStorage.getItem('userId') || '';
 
     const storedName = localStorage.getItem('userName') || '';
    
@@ -94,14 +100,14 @@ const ChatLanguageSelectionPage: React.FC = () => {
         },
       });
       
-
+      
       console.log(data?.wetailor4uAddChatScheduling?.responseMessage, "Slot booking message");
-      if (data?.bookChatSlot?.responseMessage) {
+      if (data?.wetailor4uAddChatScheduling?.responseMessage) {
         // Proceed to the chat or confirmation page
         alert('Your slot has been successfully booked.');
       }
     } catch (error) {
-      console.error('Error booking slot:', error);
+     alert('Error booking slot!please Try again Later');
     }
   };
   const handleClick = (value: string) => {
@@ -114,11 +120,12 @@ const ChatLanguageSelectionPage: React.FC = () => {
   const languages = ['Hindi', 'English', 'Telugu', 'Kannada'];
   return (
     <>
-      <h2 className="text-3xl font-extrabold mb-6 text-[#18181b] text-center mt-6">
+      <h2 className="text-3xl font-extrabold pb-6 text-[#18181b] text-center pt-6 bg-gray-200 ">
       🗪 Live Chat With Us
   
   </h2>
-      <div className="flex flex-col md:flex-row items-center justify-center bg-white">
+      <div className="flex flex-col md:flex-row items-center justify-center bg-gray-200">
+    
         <div className="bg-[#ecfdf5] shadow-lg rounded-lg p-6 w-80">
           <h2 className="text-xl font-semibold mb-4 text-center">In Which Language you prefer to chat with us</h2>
           
@@ -202,16 +209,16 @@ const ChatLanguageSelectionPage: React.FC = () => {
           id="contact"
           value={contactInfo}
           onChange={(e) => setContactInfo(e.target.value)}
-          placeholder="Enter your Phone number"
+          placeholder={contactInfo}
           className="w-full p-3 border border-gray-300 rounded-lg bg-blue-50 text-gray-800 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
       </div>
   <button
     onClick={handleSlotSelect}
     className="w-full max-w-xs bg-[#475569] text-white font-semibold p-3 rounded-lg shadow hover:bg-[#0f172a] transition duration-300"
-    disabled={!selectedSlot || loading}
+    disabled={slotloading}
   >
-    {loading ? 'Booking...' : 'Book Slot'}
+    {slotloading ? 'Booking...' : 'Book Slot'}
   </button>
 </div>
 

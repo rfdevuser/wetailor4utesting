@@ -235,3 +235,17 @@ export const GET_CUSTOMER_ADDRESSES_BY_USER_ID = gql`
     }
   }
 `;
+
+
+export const GET_CUSTOMER_DETAILS_BY_USER_ID = gql`
+  query GetCustomerDetailsByContact($contact: String!) {
+      wetailor4uUserDetailsByContact(contact: $contact) {
+      id
+      userID
+      name
+      email
+      contact
+      date
+    }
+  }
+`;

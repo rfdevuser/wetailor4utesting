@@ -95,7 +95,7 @@ const Sidebar: React.FC<SidebarProps> = ({ navigationData }) => {
         ☰
       </span>
       <span className="text-4xl text-gray-800 transform transition duration-300 hover:scale-110 hower:shadow-xl mt-8">
-        <Image src="/images/logo/logo-4u.png" alt="wetailor4u_logo" width={80} height={60} />
+   <Link href='/'>    <Image src="/images/logo/logo-4u.png" alt="wetailor4u_logo" width={80} height={60} /></Link> 
       </span>
       <ul className="flex flex-col items-left w-full">
         {navigationData.map((element, index) => (
