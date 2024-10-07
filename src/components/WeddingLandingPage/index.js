@@ -105,7 +105,7 @@ const WeddingLandingPage = () => {
         </div>
       </div>
       <div className=' bg-[#f4f4f5] mt-4'>
-      <div className='text-md lg:text-2xl text-left p-4'>Timeless Fashion, Modern Comfort: Customise Your Ideal Blouse</div>
+      <div className='text-md lg:text-2xl text-left p-4'>Timeless Fashion, Modern Comfort:<b className='text-blue-600'>Customise Your Ideal Blouse</b> </div>
       <div className=" grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6  gap-4 p-4">
         {loading ? (
           <Shimmer />

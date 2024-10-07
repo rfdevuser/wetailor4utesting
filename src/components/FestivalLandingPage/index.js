@@ -68,7 +68,7 @@ const FestivalLandingPage = () => {
     loading='lazy'
     />
     </div>
-    <div className='text-md lg:text-2xl text-left p-4 mt-8'>Sparkle and Shine: Find Your Perfect Festival Look!</div>
+    <div className='text-md lg:text-2xl text-left p-4 mt-8'>Sparkle and Shine: <b className='text-blue-600'>Find Your Perfect Festival Look!</b></div>
     <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between p-4">
       {/* Container for the festival corner image */}
       <div className="w-full lg:w-1/3 flex justify-center lg:mb-0 mb-4 lg:mb-0">
