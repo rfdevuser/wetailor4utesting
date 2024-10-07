@@ -53,8 +53,8 @@ const navigationData: NavigationItem[] = [
  { name: "COLLEGE UNIFORMS", link: "/college-uniforms", category: "Wholesale" },
  { name: "CORPORATE UNIFORMS", link: "/corporate-uniforms", category: "Wholesale" },
 
- { name: "Main Fabric Store", link: "/main-fabric-store", category: "Store" },
-  { name: "Lining Fabric Store", link: "/lining-fabric-store", category: "Store" },
+ { name: "Main Fabric Store", link: "/Fabric_Store", category: "Store" },
+  { name: "Lining Fabric Store", link: "/Lining_Store", category: "Store" },
 
   
  { name: "My Account", link: "/main-fabric-store", category: "Setting" },

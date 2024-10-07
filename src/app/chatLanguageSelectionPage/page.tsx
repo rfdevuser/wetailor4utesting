@@ -229,11 +229,12 @@ const ChatLanguageSelectionPage: React.FC = () => {
         <div className="rounded-t-lg border border-neutral-200 bg-white text-black">
           <h2 className="mb-0" id="headingOne">
             <button
-              className={`${
-                activeElement === "element1" &&
-                `text-primary [box-shadow:inset_0_-1px_0_rgba(229,231,235)] dark:!text-primary-400 dark:[box-shadow:inset_0_-1px_0_rgba(75,85,99)]`
-              } group relative flex w-full items-center rounded-t-[15px] border-0 bg-white px-5 py-4 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none dark:bg-neutral-800 dark:text-white`}
-              type="button"
+             className={`${
+              activeElement === "element1" 
+                ? `text-primary [box-shadow:inset_0_-1px_0_rgba(229,231,235)]`
+                : `bg-white text-black`
+            } group relative flex w-full items-center rounded-t-[15px] border-0 px-5 py-4 text-left text-base transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none`}
+            type="button"
               onClick={() => handleClick("element1")}
               aria-expanded="true"
               aria-controls="collapseOne"
