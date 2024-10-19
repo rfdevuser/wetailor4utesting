@@ -36,10 +36,19 @@ const CelebrationLandingPage = () => {
   
   return (
     <>
-    <div className='bg-gray-50 mt-6 '>
+    <div className='bg-gray-50 shadow-md'>
       <div className='text-md lg:text-2xl text-center mb-2 mt-4 p-2'>Making Every Celebration a Little Extra Special!</div>
       <div className='flex flex-col lg:flex-row'>
-       
+      <div className=' w-full lg:w-2/4 flex justify-center p-3'>
+          <Image
+            src='/Backgrounds/celebration/celebration1.png'
+            alt='celebration poster'
+            height={700}
+            width={800}
+            loading='lazy'
+            className='object-cover rounded-xl ' // Ensures the image covers its container properly
+          />
+        </div>
         <div className='w-full lg:w-2/4 flex items-center justify-center'>
         <div className="grid grid-cols-2 gap-4">
   <Card image="/Backgrounds/celebration/birthday.png" id='haldi'/>
@@ -51,16 +60,7 @@ const CelebrationLandingPage = () => {
 </div>
 
         </div>
-        <div className=' w-full lg:w-2/4 flex justify-center p-3'>
-          <Image
-            src='/Backgrounds/celebration/celebration1.png'
-            alt='celebration poster'
-            height={700}
-            width={800}
-            loading='lazy'
-            className='object-cover rounded-xl ' // Ensures the image covers its container properly
-          />
-        </div>
+       
 
       </div>
  

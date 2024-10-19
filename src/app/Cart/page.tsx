@@ -20,6 +20,7 @@ const Cart: React.FC = () => {
 const totalRegularPrice = cartItems.reduce((acc: number, item: any) => acc + Number(item.RegPrice), 0);
 const totalDiscountedPrice = cartItems.reduce((acc: number, item: any) => acc + Number(item.price), 0);
 const totalDiscount = totalRegularPrice - totalDiscountedPrice + 60;
+
 const LastCodeOfName = (id: string | undefined) => {
   if (!id) return ''; // Handle undefined or null case
   const idParts = id.split('-');

@@ -22,17 +22,17 @@ interface NavigationItem {
 
 const navigationData: NavigationItem[] = [
   { name: "Home", link: "/" , category: "Home" },
-  { name: "Blouse Designs", link: "/blouse-designs", category: "Bespoke" },
+  { name: "Blouse Designs", link: "/MTM_Blouse", category: "Bespoke" },
  
 
 
   
- { name: "Haldi", link: "/lining-fabric-store", category: "Wedding" },
- { name: "Mehendi", link: "/lining-fabric-store", category: "Wedding" },
- { name: "Reception", link: "/lining-fabric-store", category: "Wedding" },
- { name: "Sangeet", link: "/lining-fabric-store", category: "Wedding" },
- { name: "Wedding", link: "/lining-fabric-store", category: "Wedding" },
- { name: "Reception", link: "/lining-fabric-store", category: "Wedding" },
+ { name: "Haldi", link: "/WeddingCategoryPage/haldi", category: "Wedding" },
+ { name: "Mehendi", link: "/WeddingCategoryPage/mehendi", category: "Wedding" },
+ { name: "Reception", link: "/WeddingCategoryPage/reception", category: "Wedding" },
+ { name: "Sangeet", link: "/WeddingCategoryPage/sangeet", category: "Wedding" },
+ { name: "Wedding", link: "/WeddingCategoryPage/wedding", category: "Wedding" },
+ { name: "Engagement", link: "/WeddingCategoryPage/engagement", category: "Wedding" },
 
  { name: "Birthday", link: "/lining-fabric-store", category: "Celebration" },
  { name: "Mundan", link: "/lining-fabric-store", category: "Celebration" },
@@ -45,22 +45,24 @@ const navigationData: NavigationItem[] = [
  { name: "Toddler", link: "/lining-fabric-store", category: "Festival Corner" },
  { name: "Family", link: "/lining-fabric-store", category: "Festival Corner" },
 
- { name: "BEAUTY & SPA", link: "/spa", category: "Wholesale" },
- { name: "HOSPITAL", link: "/hospital", category: "Wholesale" },
- { name: "HOTEL", link: "/hotel", category: "Wholesale" },
- { name: "RESTAURANT & BAR", link: "/restaurant", category: "Wholesale" },
- { name: "SCHOOL UNIFORMS", link: "/school-uniforms", category: "Wholesale" },
- { name: "COLLEGE UNIFORMS", link: "/college-uniforms", category: "Wholesale" },
- { name: "CORPORATE UNIFORMS", link: "/corporate-uniforms", category: "Wholesale" },
+ { name: "BEAUTY & SPA", link: "/B2BsubCategoryPage/BeautyandSpa", category: "Corporate Uniforms" },
+ { name: "HOSPITAL", link: "/B2BsubCategoryPage/Hospital", category: "Corporate Uniforms" },
+ { name: "HOTEL", link: "/B2BsubCategoryPage/Hotel", category: "Corporate Uniforms" },
+ { name: "RESTAURANT & BAR", link: "/B2BsubCategoryPage/ResturantandBar", category: "Corporate Uniforms" },
+ { name: "SCHOOL UNIFORMS", link: "/B2BsubCategoryPage/SchoolUniform", category: "Corporate Uniforms" },
+ { name: "COLLEGE UNIFORMS", link: "/B2BsubCategoryPage/CollegeUniforms", category: "Corporate Uniforms" },
+ { name: "CORPORATE UNIFORMS", link: "/B2BsubCategoryPage/CorporateUniforms", category: "Corporate Uniforms" },
 
  { name: "Main Fabric Store", link: "/Fabric_Store", category: "Store" },
   { name: "Lining Fabric Store", link: "/Lining_Store", category: "Store" },
 
   
- { name: "My Account", link: "/main-fabric-store", category: "Setting" },
- { name: "Saved Address", link: "/lining-fabric-store", category: "Setting" },
- { name: "Order History", link: "/main-fabric-store", category: "Setting" },
-  { name: "Terms and Policy", link: "/lining-fabric-store", category: "Setting" },
+ { name: "My Account", link: "/MyAccount", category: "Setting" },
+ { name: "Custom Room", link: "/CustomerRoom", category: "Setting" },
+ { name: "Send Your Fabric", link: "/SendYourFabric", category: "Setting" },
+ { name: "Saved Address", link: "/CustomerAddress", category: "Setting" },
+ { name: "Order History", link: "/OrderHistory", category: "Setting" },
+  { name: "Terms and Policy", link: "/TermsAndConditions", category: "Setting" },
 
 ];
 

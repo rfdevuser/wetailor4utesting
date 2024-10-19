@@ -144,3 +144,76 @@ mutation mymutation($input: CustomerAddressInput!,
     }
   }
 `;
+
+
+
+export const UPDATE_PRODUCT_TOKEN = gql`
+mutation UpdateProductToken($id: String!, $token: Int!) {
+  wetailor4uUpdateProductToken(input: {id: $id, token: $token}) { 
+    responseMessage
+  }
+}
+`;
+
+
+export const UPDATE_CUSTOMER_ORDER = gql`
+mutation UpdateCustomerOrder($uid: String!, $status: String!, $orderid: String!) {
+  customerOrderUpdate(input: {uid: $uid, status: $status, orderid: $orderid}) { 
+    responseMessage
+  }
+}
+`;
+
+
+export const UPDATE_CUSTOMER_STATUS = gql`
+mutation UpdateCustomerStatus($uid: String!, $status: String!) {
+  wetailor4uCustomerStatusUpdate(input: {uid: $uid, status: $status}) { 
+    responseMessage
+  }
+}
+`;
+
+
+export const ADD_FABRIC_PICKUP = gql`
+  mutation AddFabricPickup(
+    $userID: String!,
+    $fabricType: String!,
+    $fabricColour: String!,
+    $fabricQuantity: String!,
+    $description: String!,
+    $imageLink: String!,
+    $address: String!,
+    $pickupDate: String!,
+    $contactNo: String!,
+    $status: String!
+  ) {
+      wetailor4uFabricPickupInsert(
+      input: {
+        userID: $userID,
+        fabric_type: $fabricType,
+        fabric_colour: $fabricColour,
+        fabric_quantity: $fabricQuantity,
+        description: $description,
+        image_link: $imageLink,
+        address: $address,
+        pickup_date: $pickupDate,
+        contact_no: $contactNo,
+        status: $status,
+        clientMutationId: "test"
+      }
+    ) {
+      clientMutationId
+      responseMessage
+    }
+  }
+`;
+
+
+
+export const INSERT_ORDER_HISTORY = gql`
+mutation InsertOrderHistory($userID: String!, $orderID: String!) {
+  wetailor4uInsertOrderHistory(input: {userID: $userID, orderID: $orderID}) { 
+    responseMessage
+  }
+}
+`;

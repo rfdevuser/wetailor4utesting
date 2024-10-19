@@ -59,7 +59,7 @@ const FestivalLandingPage = () => {
 
   return (
     <> 
-    <div className=' relative mt-6 p-4 bg-[#f1f5f9]'>
+    <div className=' relative mt-6 p-4 bg-[#ecfdf5]'>
     <Image 
     src='/Backgrounds/Festival/Festivalposter.jpg'
     alt='Landing Page Poster'
@@ -86,7 +86,7 @@ const FestivalLandingPage = () => {
         <div className="w-full max-w-4xl">
           <Slider {...settings}>
             {imageData.map((image, index) => (
-              <div key={index} className="flex justify-center items-center p-2">
+              <div key={index} className="flex justify-center items-center p-2 shadow-xl">
                 <Image 
                   src={image.src}
                   alt={image.alt}

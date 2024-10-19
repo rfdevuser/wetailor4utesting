@@ -24,7 +24,7 @@ if (savedPhoneNumber) {
 
   },[])
   const { loading, error, data } = useQuery(GET_CUSTOMER_DETAILS_BY_USER_ID, {
-    variables: { contact: phoneNumber },
+    variables: { contact: `${phoneNumber}` },
   });
 
   // Effect to handle redirection after data is loaded

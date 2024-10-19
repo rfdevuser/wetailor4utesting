@@ -52,22 +52,22 @@ const DropdownMenu = () => {
           Home
         </a>
         <a
-          href="#"
+          href="/OrderHistory"
           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
         >
          Orders
         </a>
         <a
-          href="#"
+          href="/"
           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
         >
           Contact Us
         </a>
         <a
-          href="#"
+          href="MyAccount"
           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
         >
-          Coupons
+          MyAccount
         </a>
 
         <a
@@ -75,6 +75,12 @@ const DropdownMenu = () => {
           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
         >
          Saved Address
+        </a>
+        <a
+          href="/SendYourFabric"
+          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+        >
+         Send Your fabric
         </a>
         <button
           onClick={handleLogout}

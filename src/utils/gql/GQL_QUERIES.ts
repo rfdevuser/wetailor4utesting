@@ -249,3 +249,91 @@ export const GET_CUSTOMER_DETAILS_BY_USER_ID = gql`
     }
   }
 `;
+
+
+
+export const GET_CUSTOMER_CUSTOM_PRODUCT_DETAILS_BY_CONTACT_FOR_UNPAID = gql`
+query GetDataByContact($contact_no: String!) {
+  getDataByContact(contact_no: $contact_no) {
+    description
+    id
+    name
+    payment_type
+    price
+    quantity
+    size
+    image_link
+    pid
+    token
+  }
+}
+
+`;
+
+
+export const GET_CUSTOMER_CUSTOM_PRODUCT_DETAILS_BY_CONTACT_FOR_PAID = gql`
+query GetPaidDataByContact($contact_no: String!) {
+    getPaidDataByContact(contact_no: $contact_no) {
+    description
+    id
+    name
+    payment_type
+    price
+    quantity
+    size
+    image_link
+    pid
+    token
+  }
+}
+
+`;
+
+export const GET_CUSTOMER_CUSTOM_PRODUCT_DETAILS_BY_CONTACT_FOR_HALFPAID = gql`
+query GetHalfPaidDataByContact($contact_no: String!) {
+  getHalfPaidDataByContact(contact_no: $contact_no) {
+    description
+    id
+    name
+    payment_type
+    price
+    quantity
+    size
+    image_link
+    pid
+    token
+  }
+}
+
+`;
+
+
+
+export const GET_FABRIC_PICKUP_DETAILS_BY_USER_ID = gql`
+  query GetFabricPickupDetailsByUserID($userID: String!) {
+   wetailor4uFabricPickupDetails(userID: $userID) {
+      userID
+      fabric_type
+      fabric_colour
+      fabric_quantity
+      description
+      image_link
+      address
+      pickup_date
+      contact_no
+      status
+    }
+  }
+`;
+
+
+export const GET_ORDER_HISTORY_DETAILS_BY_USER_ID = gql`
+  query GetOrderHistoryDetailsByUserID($userID: String!) {
+   getOrderHistoryByUserID(userID: $userID) {
+      idPrimary
+      userID
+      orderID
+      date_of_entry
+    }
+  }
+`;

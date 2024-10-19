@@ -1,3 +1,7 @@
+
+html, body {
+  overflow-x: hidden;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,9 +20,7 @@ body {
     text-wrap: balance;
   }
 }
-html, body {
-  overflow-x: hidden;
-}
+
 .z-custom {
   z-index: 1000; /* Adjust this value as needed */
 }
@@ -80,3 +82,12 @@ html, body {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+
+
+.blurred {
+  filter: blur(7px); /* Adjust the value for desired blur effect */
+  transition: filter 0.3s ease; /* Optional: smooth transition for the blur effect */
+}
+
+

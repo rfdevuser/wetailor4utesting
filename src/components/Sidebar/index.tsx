@@ -56,6 +56,10 @@ const Sidebar: React.FC<SidebarProps> = ({ navigationData }) => {
         return <BsBrilliance />;
         case"Terms and Policy":
         return <BsBrilliance />;
+        case"Send Your Fabric":
+        return <BsBrilliance/>
+        case"Custom Room":
+        return <BsBrilliance />;
       default:
         return <BsFillHandbagFill />;
     }

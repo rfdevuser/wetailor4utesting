@@ -1,4 +1,5 @@
 
+import Link from 'next/link';
 import { FaInstagram, FaLinkedin, FaFacebookF } from 'react-icons/fa'; 
 const Footer = () => {
   const scrollToTop = () => {
@@ -44,12 +45,12 @@ const Footer = () => {
           </div>
           <div className="w-full md:w-1/4">
             <h3 className="text-lg font-bold mb-2">Let us help you</h3>
-            <p className="hover:text-[#4338ca] cursor-pointer">Cancellation and Return Policy</p>
-            <p className="hover:text-[#4338ca] cursor-pointer">Privacy Policy</p>
+            <p className="hover:text-[#4338ca] cursor-pointer"><Link href='/TermsAndConditions'>Cancellation and Return Policy</Link></p>
+            <p className="hover:text-[#4338ca] cursor-pointer"><Link href='/PurchaseAndPolicy'>Purchase And Policy</Link></p>
             <p className="hover:text-[#4338ca] cursor-pointer">Fabric Policy</p>
-            <p className="hover:text-[#4338ca] cursor-pointer">Terms of use</p>
-            <p className="hover:text-[#4338ca] cursor-pointer">Track Your Order</p>
-            <p className="hover:text-[#4338ca] cursor-pointer">Your account</p>
+            <p className="hover:text-[#4338ca] cursor-pointer"><Link href='/TermsAndConditions'>Terms of use</Link></p>
+            <p className="hover:text-[#4338ca] cursor-pointer"><Link href='/OrderHistory'>Track Your Order</Link></p>
+            <p className="hover:text-[#4338ca] cursor-pointer"><Link href='/MyAccount'>Your account</Link></p>
             <p className="hover:text-[#4338ca] cursor-pointer">Wash Care</p>
           </div>
          {/* Address Section */}

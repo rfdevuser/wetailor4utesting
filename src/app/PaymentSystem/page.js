@@ -1,5 +1,7 @@
   "use client"
-  import { CREATEORDER } from "@/utils/gql/GQL_MUTATIONS";
+import { sendEmail } from "@/email/email";
+
+  import { CREATEORDER, INSERT_ORDER_HISTORY, UPDATE_CUSTOMER_ORDER } from "@/utils/gql/GQL_MUTATIONS";
   import { useMutation } from "@apollo/client";
 import { useRouter } from "next/navigation";
   import { useState, useEffect } from "react";
@@ -11,10 +13,13 @@ import { useRouter } from "next/navigation";
     const [email, setEmail] = useState('');
     const userName = useSelector((state) => state.form.formData.name);
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [orderId , setOrderId] = useState('');
     const [selectedAddress, setSelectedAddress] = useState('');
     const [customerNotes, setCustomerNotes] = useState('');
+    const [userID, setUserID] = useState('');
     const cartItems = useSelector((state) => state.cart.items);
     // const dispatch = useDispatch();
+
     useEffect(() => {
       // Retrieve the email from local storage
       const savedEmail = localStorage.getItem('email');
@@ -22,12 +27,15 @@ import { useRouter } from "next/navigation";
           setEmail(savedEmail);
       }
 
-
+      
       const savedPhoneNumber = localStorage.getItem('phoneNumber');
           if (savedPhoneNumber) {
               setPhoneNumber(savedPhoneNumber);
           }
-
+const saveduserID = localStorage.getItem('userId') || '';
+if(saveduserID){
+  setUserID(saveduserID)
+}
 
           const storedAddress = localStorage.getItem('selectedAddress');
         if (storedAddress) {
@@ -75,60 +83,136 @@ var shippingLines = [{methodId: "IN", methodTitle:"Local", total: "60.00"}]
     const totalRegularPrice = cartItems.reduce((acc, item) => acc + Number(item.RegPrice), 0);
     const totalDiscountedPrice = cartItems.reduce((acc, item) => acc + Number(item.price), 0);
     const totalDiscount = totalRegularPrice - totalDiscountedPrice + 60;
-    
+    const [insertOrderHistory, { data, loading, error }] = useMutation(INSERT_ORDER_HISTORY);
+    console.log(error,"errorer")
     const [doCreateOrder, { loading: oloading, error: oerror }] = useMutation(CREATEORDER, {
-      onCompleted: (odata) => {
-        console.log(odata);
-        alert(`Order Created. We have emailed your Order Details`);
-      },
-      onError: (err) => {
-        console.error("Error creating order:", err.message);
-      }
-    });
+      onCompleted: async (odata) => {
+          console.log(odata);
 
-    const handleonsubmit = async ()=>{
-      console.log("checkout mutation get called")
-      try{
-        doCreateOrder({variables: {
-                  
-          input:{
-            address1:selectedAddress.door_no+selectedAddress.postal_address1,
-            address2:selectedAddress.postal_address2,
-            city :selectedAddress.city,
-            // company : input.company,
-            email :email,
-            firstName:selectedAddress.firstname,
-            lastName:selectedAddress.lastname,
-            phone : selectedAddress.contact_no,
-            postcode : selectedAddress.pincode,
-            state :selectedAddress.state,
-            country: 'IN',
+        console.log(typeof orderId , typeof userID)
+          insertOrderHistory({ variables: { userID:userID, orderID:orderId } });
+          alert(`Order Created. We have emailed your Order Details`);
+          try {
+            const emailData = {
+                to_email: email, // Replace with your account team's email
+                from_name: 'WeTailor4U',
+                to_name: userName,
+                reply_to: 'no-reply@wetailor4u.com',
+                subject: 'Order Created Successfully',
+                message: `Thank you for choosing to shop with us! We truly appreciate your support and trust in our products. Your satisfaction is our top priority, and we hope you’re delighted with your purchase.\n Here are your order details: 
+                Order ID: ${orderId}, 
+             
+               `,
+            };
+
+            await sendEmail(emailData);
+        } catch (emailErr) {
+            console.error("Failed to send error notification email:", emailErr);
+            
+        }
+      },
+      onError: async (err) => {
+          console.error("We regret to inform you that there was an error in creating your order. Please rest assured that your refund will be processed and should be reflected in your account within 3 to 5 business days.");
           
-            overwrite: true
-        },
-        shippingInput:{
-          firstName:selectedAddress.firstname,
-          lastName:selectedAddress.lastname,
-          address1:selectedAddress.door_no+selectedAddress.postal_address1,
-          address2:selectedAddress.postal_address2,
-          city :selectedAddress.city,
-          // company :shippingInput.company,
-          postcode : selectedAddress.pincode,
-            state :selectedAddress.state,
-            country: 'IN',
-          
-      
-          overwrite: true
-        },lineItems: mlineitems,isPaid:true,paymentMethod:'Razorpay Card Payment',status:'PROCESSING',
-        customerNotes:customerNotes,shippingLines:shippingLines
-      
-        }})  
-      }catch (error) {
-        console.error("Order creation failed:", error);
-        // Handle error appropriately (e.g., display a message to the user)
-    }
-    };
+          try {
+              const emailData = {
+                  to_email: 'accounts@rakhisfashions.com', // Replace with your account team's email
+                  from_name: 'WeTailor4U',
+                  to_name: 'Accounts',
+                  reply_to: 'no-reply@wetailor4u.com',
+                  subject: 'Order Creation Error Notification',
+                  message: `
+                  I am writing to inform you that one of our customers has encountered an issue with a recent transaction, which has unfortunately failed. Could you please verify this matter with the accounts team and initiate the refund process at your earliest convenience? \n An error occurred while creating an order. Please initiate a refund.\n\nError Details: ${err.message}\nCustomer Details:\nName: ${userName}\nEmail: ${email}\nPhone: ${phoneNumber}\nAddress: ${JSON.stringify(selectedAddress)}\n\nPlease take necessary actions.`,
+              };
   
+              await sendEmail(emailData);
+          } catch (emailErr) {
+              console.error("Failed to send error notification email:", emailErr);
+            
+          }
+      }
+  });
+  
+    const [updateCustomerOrder] = useMutation(UPDATE_CUSTOMER_ORDER);
+    const handleonsubmit = async () => {
+      console.log("checkout mutation get called");
+    
+      // Check for payment types in cartItems
+      const hasFullPayment = cartItems.some(item => item.slug && item.slug.includes('full_payment'));
+      const hasAdvancePayment = cartItems.some(item => item.slug && item.slug.includes('advance_payment'));
+     
+
+      
+
+      try {
+        // Call the order creation mutation
+        const response = await doCreateOrder({
+          variables: {
+            input: {
+              address1: selectedAddress.door_no + selectedAddress.postal_address1,
+              address2: selectedAddress.postal_address2,
+              city: selectedAddress.city,
+              email: email,
+              firstName: selectedAddress.firstname,
+              lastName: selectedAddress.lastname,
+              phone: selectedAddress.contact_no,
+              postcode: selectedAddress.pincode,
+              state: selectedAddress.state,
+              country: 'IN',
+              overwrite: true,
+            },
+            shippingInput: {
+              firstName: selectedAddress.firstname,
+              lastName: selectedAddress.lastname,
+              address1: selectedAddress.door_no + selectedAddress.postal_address1,
+              address2: selectedAddress.postal_address2,
+              city: selectedAddress.city,
+              postcode: selectedAddress.pincode,
+              state: selectedAddress.state,
+              country: 'IN',
+              overwrite: true,
+            },
+            lineItems: mlineitems,
+            isPaid: true,
+            paymentMethod: 'Razorpay Card Payment',
+            status: 'PROCESSING',
+            customerNotes: customerNotes,
+            shippingLines: shippingLines,
+          },
+        });
+    console.log(response)
+    const orderIdResponse = response.data.createOrder.orderId;
+    setOrderId(String(orderIdResponse));
+    const uid = cartItems.length > 0 && cartItems[0].slug ? cartItems[0].slug.split('/')[0] : null;
+
+    let status;
+console.log(uid,"uid from final checkout")
+    if (hasAdvancePayment) {
+      status = 'halfpaid'; // Set status for advance payment
+     
+    } else if (hasFullPayment) {
+      status = 'paid'; // Set status for full payment
+    
+    }
+console.log(status,"status")
+    // Call the GraphQL mutation to update the customer order
+    if (status) {
+      console.log("insidestatus")
+      const orderid = response.data.createOrder.orderId; // Update this line
+      console.log(uid)
+      await updateCustomerOrder({
+        variables: {
+          uid,
+          status,
+          orderid: String(orderid), 
+        },
+      });
+    }
+
+  } catch (error) {
+    console.error("Order creation failed:", error);
+  }
+};
 
     const payNow = async () => {
       if (!selectedAddress || Object.keys(selectedAddress).length === 0) {
@@ -172,33 +256,12 @@ var shippingLines = [{methodId: "IN", methodTitle:"Local", total: "60.00"}]
             color: "#0f172a",
           },
           handler: function (response) {
-            // fetch("/api/verify-payment", {
-            //   method: "POST",
-            //   headers: {
-            //     "Content-Type": "application/json",
-            //   },
-            //   body: JSON.stringify({
-            //     razorpay_order_id: response.razorpay_order_id,
-            //     razorpay_payment_id: response.razorpay_payment_id,
-            //     razorpay_signature: response.razorpay_signature,
-            //   }),
-            // })
-            //   .then((res) => res.json())
-            //   .then((data) => {
-            //     if (data.status === "ok") {
-            //       window.location.href = "/payment-success";
-            //     } else {
-            //       alert("Payment verification failed");
-            //     }
-            //   })
-            //   .catch((error) => {
-            //     console.error("Error:", error);
-            //     alert("Error verifying payment");
-            //   });
-            console.log("i am handaler funcion")
+           
+        
+            
  
-
-handleonsubmit()
+            handleonsubmit();
+           
 
 
           },
@@ -214,7 +277,17 @@ handleonsubmit()
         alert("Error creating order");
       }
     };
-  
+  if(oloading){
+    return(
+      <p className="text-2xl flex justify-center text-center  bg-clip-text text-transparent bg-gradient-to-t from-[#111827] to-[#075985] mt-8 mb-8"><b>Please Wait...Creating Your Order</b></p>
+    )
+  }
+  if(loading){
+return(
+  <p className="text-2xl flex justify-center text-center  bg-clip-text text-transparent bg-gradient-to-t from-[#111827] to-[#075985] mt-8 mb-8"><b>Almost Done..</b></p>
+)
+
+  }
     return (
       <>
       <div className='mt-4 w-full'>
@@ -229,7 +302,7 @@ handleonsubmit()
       <div className="flex justify-center">
     
     
-          <button className="w-1/2  mt-4 bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-800 transition duration-200 shadow-lg mb-10" type="submit " onClick={payNow}   >Pay Now</button>
+          <button className="w-1/2  mt-4 bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-800 transition duration-200 shadow-lg mb-10" type="submit " onClick={handleonsubmit}   >Pay Now</button>
       {/* <button onClick={handleonsubmit}>checkout</button> */}
       </div>
       </>

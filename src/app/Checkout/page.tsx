@@ -51,10 +51,6 @@ const Page = () => {
     useEffect(() => {
         const id = localStorage.getItem('userId');
         if (id) setUserId(id);
-    }, []);
-    useEffect(() => {
-        const id = localStorage.getItem('userId');
-        if (id) setUserId(id);
 
         // Load selected address from local storage if it exists
         const storedAddress = localStorage.getItem('selectedAddress');

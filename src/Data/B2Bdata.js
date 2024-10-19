@@ -1,6 +1,6 @@
 export const B2BcardData = [
     {
-        id: 1,
+        id: 'BeautyandSpa',
         title: 'BEAUTY & SPA',
         image: '/landingPageB2B/beautyandspablue.jpg',
         subcategories: [
@@ -16,7 +16,7 @@ export const B2BcardData = [
         ],
     },
     {
-        id: 2,
+        id: 'Hospital',
         title: 'HOSPITAL',
         image: '/landingPageB2B/hospitalblue.jpg',
         subcategories: [
@@ -32,7 +32,7 @@ export const B2BcardData = [
         ],
     },
     {
-        id: 3,
+        id: 'Hotel',
         title: 'HOTEL',
         image: '/landingPageB2B/hotelblue.jpg',
         subcategories: [
@@ -53,7 +53,7 @@ export const B2BcardData = [
         ],
     },
     {
-        id: 4,
+        id: 'ResturantandBar',
         title: 'RESTAURANT & BAR',
         image: '/landingPageB2B/nursingblue.jpg',
         subcategories: [
@@ -70,7 +70,7 @@ export const B2BcardData = [
         ],
     },
     {
-        id: 5,
+        id: 'SchoolUniform',
         title: 'SCHOOL UNIFORMS',
         image: '/landingPageB2B/cor3.jpg',
         subcategories: [
@@ -84,7 +84,7 @@ export const B2BcardData = [
         ],
     },
     {
-        id: 6,
+        id: 'CollegeUniforms',
         title: 'COLLEGE UNIFORMS',
         image: '/landingPageB2B/cor2.jpg',
         subcategories: [
@@ -105,7 +105,7 @@ export const B2BcardData = [
         ],
     },
     {
-        id: 7,
+        id: 'CorporateUniforms',
         title: 'CORPORATE UNIFORMS',
         image: '/landingPageB2B/corporate1.jpg',
         subcategories: [
