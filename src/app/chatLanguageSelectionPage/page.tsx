@@ -70,7 +70,7 @@ const ChatLanguageSelectionPage: React.FC = () => {
       });
 
       if (data?.wetailor4uAddChatInfo?.responseMessage) {
-        window.open(`https://chat-module-psi.vercel.app/Chat/${userId}`, '_blank');
+        router.push(`/Chat/${userId}`);
       }
     } catch (error) {
       console.error('Mutation error:', error);
