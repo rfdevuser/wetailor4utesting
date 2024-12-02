@@ -112,64 +112,73 @@ const CustomerChatPage: React.FC<CustomerChatPageProps> = ({ id }) => {
   };
 
   return (
+    <>
     <div className="flex flex-col h-screen p-4 bg-[#172554]">
-      <h1 className="text-xl font-bold mb-4 flex justify-center text-white">Free Chat with Fashion Stylish</h1>
-      <div className="flex-1 overflow-y-auto mb-4 p-2 rounded-lg shadow-lg" style={{ 
-        backgroundImage: "url('/chatbg1.png')", 
-        backgroundSize: 'cover', 
-        backgroundRepeat: 'no-repeat', 
-        backgroundPosition: 'center' 
-      }} >
+      <h1 className="text-2xl font-bold mb-4 text-center text-white">Free Chat with Fashion Stylish</h1>
+  
+      {/* Chat container */}
+      <div className="flex-1 overflow-y-auto bg-opacity-70 p-4 rounded-lg shadow-lg"
+           style={{
+             backgroundImage: "url('/chatbg1.png')",
+             backgroundSize: 'cover',
+             backgroundRepeat: 'no-repeat',
+             backgroundPosition: 'center'
+           }}>
         {messages.map((msg, index) => {
           const dateString = formatDate(msg.timestamp);
           const timeString = formatTime(msg.timestamp);
-          // const date = new Date(msg.timestamp.seconds * 1000);
           const showDateHeader = index === 0 || formatDate(messages[index - 1].timestamp) !== dateString;
-
+  
           return (
-            <div key={msg.id} className={`mb-2 flex ${msg.type === 'customer' ? 'justify-end' : 'justify-start'}`}>
+            <div key={msg.id} className={`mb-4 flex ${msg.type === 'customer' ? 'justify-end' : 'justify-start'}`}>
               {showDateHeader && (
                 <div className="text-center mx-auto text-white mb-2 font-semibold w-full">
                   {dateString}
                 </div>
               )}
-              <div className={`p-2 rounded-lg flex flex-col max-w-lg ${msg.type === 'customer' ? 'bg-white text-black' : 'bg-gray-300 text-black'}`}>
-                <strong>{msg.type === 'customer' ? 'You' : 'Designer'}:</strong>
-                <span>{msg.text}</span>
+              <div className={`p-4 rounded-lg flex flex-col max-w-lg ${msg.type === 'customer' ? 'bg-white text-black' : 'bg-gray-300 text-black shadow-md'}`}>
+                <strong className="text-lg font-semibold">{msg.type === 'customer' ? 'You' : 'Designer'}:</strong>
+                <span className="mt-2 text-base">{msg.text}</span>
                 {msg.file && (
                   <a href={msg.file} target="_blank" rel="noopener noreferrer">
-                    <img src={msg.file} alt="Uploaded" className="mt-1 max-w-full h-auto rounded-lg cursor-pointer" />
+                    <img src={msg.file} alt="Uploaded" className="mt-2 max-w-full h-auto rounded-lg cursor-pointer shadow-md" />
                   </a>
                 )}
-                <span className="text-sm text-black-800 mt-1 text-right">{timeString}</span>
+                <span className="text-sm text-gray-600 mt-2 text-right">{timeString}</span>
               </div>
             </div>
           );
         })}
       </div>
-      <form onSubmit={handleSend} className="flex">
+  
+      {/* Input form */}
+      <form onSubmit={handleSend} className="flex flex-col sm:flex-row mt-4 sticky bottom-0 bg-[#172554] p-4 rounded-lg shadow-lg border-t border-gray-700">
         <textarea
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type your message..."
-          className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-200"
+          className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-200 mb-2 sm:mb-0 sm:mr-2"
           rows={2}
         />
-        <label className="ml-2 cursor-pointer">
-          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <label className="flex items-center mb-2 sm:mb-0">
+          <svg className="w-6 h-6 text-white cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h18v18H3V3z" />
           </svg>
           <input
-            type="file"
-            onChange={(e) => e.target.files && setFile(e.target.files[0])}
-            className="ml-2 border rounded-lg text-white"
-          />
+  type="file"
+  onChange={(e) => e.target.files && setFile(e.target.files[0])}
+  className="ml-2 border border-gray-300 rounded-lg p-2 bg-gray-800 text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out"
+/>
+
         </label>
-        <button type="submit" className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" disabled={loading}>
+        <button type="submit" className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300" disabled={loading}>
           {loading ? 'Sending...' : 'Send'}
         </button>
       </form>
     </div>
+  </>
+  
+  
   );
 };
 
